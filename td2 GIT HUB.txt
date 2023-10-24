@@ -1,0 +1,372 @@
+exercice1 :
+#include <iostream>
+
+using namespace std;
+
+void affiche(){
+static int i = 1 ;
+cout << " affiche appel numero " << i<<endl ;
+++i ;
+}
+
+
+int main()
+{
+    affiche() ;
+    affiche() ;
+    affiche() ;
+
+
+    return 0;
+}
+exercice2:
+#include <iostream>
+
+using namespace std ;
+bool fonction1(int n) {
+     if (n%2==0)
+    cout<<"ce nombre est pair" ;}
+
+bool fonction2(int n) {
+    if (n%3==0)
+     cout<<"ce nombre est multiple de 3" ;}
+
+
+
+int main() {
+	int n ;
+    cout<<"entrer un nombre:"<< endl ;
+    cin>>n ;
+    if (fonction1( n)) {
+        cout << "Il est pair" << endl;
+    }
+
+    if (fonction2(n)) {
+        cout << "Il est multiple de 3" << endl;
+    }
+
+    if (fonction1(n) &&fonction2(n)) {
+        cout << "Il est divisible par 6" << endl;
+    }
+
+
+    return 0;
+}
+exercice3:
+#include <iostream>
+using namespace std;
+
+int main() {
+    int tableau[10];
+    int *ptr = tableau;
+    int plusGrand, plusPetit;
+
+    // Lecture des 10 nombres entiers
+    for(int i = 0; i < 10; i++) {
+        cout << "Entrez le nombre " << i+1 << " : ";
+        cin >> *(ptr + i);
+    }
+
+    // Initialisation avec la première valeur du tableau
+    plusGrand = plusPetit = *ptr;
+
+    // Recherche du plus grand et du plus petit
+    for(int i = 1; i < 10; i++) {
+        if(*(ptr + i) > plusGrand)
+            plusGrand = *(ptr + i);
+        if(*(ptr + i) < plusPetit)
+            plusPetit = *(ptr + i);
+    }
+
+    // Affichage des résultats
+    cout << "Le plus grand nombre est : " << plusGrand << endl;
+    cout << "Le plus petit nombre est : " << plusPetit << endl;
+
+    return 0;
+}
+//la version du tableau
+#include <iostream>
+using namespace std;
+
+int main() {
+    int tableau[10];
+    int plusGrand, plusPetit;
+
+    // Lecture des 10 nombres entiers
+    for(int i = 0; i < 10; i++) {
+        cout << "Entrez le nombre " << i+1 << " : ";
+        cin >> tableau[i];
+    }
+
+    // Initialisation avec la première valeur du tableau
+    plusGrand = plusPetit = tableau[0];
+
+    // Recherche du plus grand et du plus petit
+    for(int i = 1; i < 10; i++) {
+        if(tableau[i] > plusGrand)
+            plusGrand = tableau[i];
+        if(tableau[i] < plusPetit)
+            plusPetit = tableau[i];
+    }
+
+    // Affichage des résultats
+    cout << "Le plus grand nombre est : " << plusGrand << endl;
+    cout << "Le plus petit nombre est : " << plusPetit << endl;
+
+    return 0;
+}
+EXERCICE4:
+EXERCICE5:
+#include <iostream>
+using namespace std;
+
+int main() {
+    // Étape 1 : Déclarer un entier a
+    int a = 22;
+
+    int &ref_a = a;
+
+    int *p_a = &a;
+
+    cout << "a : " << a << ", Adresse de a : " << &a << endl;
+    cout << "ref_a : " << ref_a << ", Adresse de ref_a : " << &ref_a << ", Valeur pointée par ref_a : " << ref_a << endl;
+    cout << "p_a : " << p_a << ", Adresse de p_a : " << &a << ", Valeur pointée par p_a : " << *p_a << endl;
+
+    return 0;
+}
+EXERCICE7:
+#include <iostream>
+using namespace std;
+
+void triBulles(int tableau[], int taille) {
+    bool permutation = true;
+    while (permutation) {
+        permutation = false;
+        for (int i = 0; i < taille - 1; i++) {
+            if (tableau[i] > tableau[i+1]) {
+                // Échanger les éléments
+                int temp = tableau[i];
+                tableau[i] = tableau[i+1];
+                tableau[i+1] = temp;
+                permutation = true;
+            }
+        }
+    }
+}
+
+int main() {
+    int tableau[10];
+
+    cout << "Veuillez entrer 10 entiers : ";
+    for (int i = 0; i < 10; i++) {
+        cin >> tableau[i];
+    }
+
+    triBulles(tableau, 10);
+
+    cout << "Tableau trié : ";
+    for (int i = 0; i < 10; i++) {
+        cout << tableau[i] << " ";
+    }
+    cout << endl;
+
+    return 0;
+}
+EXERCICE8:
+#include <iostream>
+using namespace std;
+
+class Complexe {
+private:
+    float reel;
+    float imaginaire;
+
+public:
+    Complexe(float r,float i) : reel(r), imaginaire(i) {}
+
+    Complexe addition(Complexe autre) {
+        float reel_resultat = reel + autre.reel;
+        float imaginaire_resultat = imaginaire + autre.imaginaire;
+        return Complexe(reel_resultat, imaginaire_resultat);
+    }
+
+    Complexe soustraction(Complexe autre) {
+        float reel_resultat = reel - autre.reel;
+        float imaginaire_resultat = imaginaire - autre.imaginaire;
+        return Complexe(reel_resultat, imaginaire_resultat);
+    }
+
+
+    void afficher_resultat() {
+        cout << "Partie réelle : " << reel << endl;
+        cout << "Partie imaginaire : " << imaginaire << endl;
+    }
+};
+
+Complexe demander_nombre() {
+    float reel, imaginaire;
+    cout << "Entrez la partie réelle : ";
+    cin >> reel;
+    cout << "Entrez la partie imaginaire : ";
+    cin >> imaginaire;
+    return Complexe(reel, imaginaire);
+}
+
+int menu() {
+    int choix;
+    cout << "Menu:" << endl;
+    cout << "1. Addition" << endl;
+    cout << "2. Soustraction" << endl;
+
+    cin >> choix;
+    return choix;
+}
+
+int main() {
+	Complexe resultat(0,0) ;
+    Complexe nombre1 = demander_nombre();
+    Complexe nombre2 = demander_nombre();
+    int choix = menu();
+    switch (choix) {
+        case 1:
+            resultat = nombre1.addition(nombre2);
+            break;
+        case 2:
+            resultat = nombre1.soustraction(nombre2);
+            break;
+
+
+        default:
+            cout << "Choix invalide" << endl;
+            return 1;
+    }
+
+    resultat.afficher_resultat();
+
+    return 0;
+}
+exercice9:
+#include <iostream>
+using namespace std;
+
+class Animal {
+protected:
+    string nom;
+    int age;
+
+public:
+    void set_value(string n, int a) {
+        nom = n;
+        age = a;
+    }
+};
+
+class Zebra : public Animal {
+public:
+    void afficher_informations() {
+        cout << "Je suis un zèbre nommé " << nom << "." << endl;
+        cout << "J'ai " << age << " ans." << endl;
+        cout << "Je viens d'Afrique." << endl;
+    }
+};
+
+class Dolphin : public Animal {
+public:
+    void afficher_informations() {
+        cout << "Je suis un dauphin nommé " << nom << "." << endl;
+        cout << "J'ai " << age << " ans." << endl;
+        cout << "Je viens de l'océan." << endl;
+    }
+};
+
+int main() {
+    Zebra zebre;
+    Dolphin dauphin;
+
+    zebre.set_value("Martin", 5);
+    dauphin.set_value("Flipper", 7);
+
+    zebre.afficher_informations();
+    cout << endl;
+    dauphin.afficher_informations();
+
+    return 0;
+}
+exercice10:
+#include <iostream>
+#include <string>
+using namespace std;
+
+class Personne {
+private:
+    string nom;
+    string prenom;
+    string dateNaissance;
+
+public:
+    Personne(string nom, string prenom, string dateNaissance)
+        : nom(nom), prenom(prenom), dateNaissance(dateNaissance) {}
+
+    virtual void Afficher() const {
+        cout << "Nom : " << nom << ", Prénom : " << prenom << ", Date de naissance : " << dateNaissance << endl;
+    }
+};
+
+class Employe : public Personne {
+private:
+    double salaire;
+
+public:
+    Employe(string nom, string prenom, string dateNaissance, double salaire)
+        : Personne(nom, prenom, dateNaissance), salaire(salaire) {}
+
+    void Afficher() const override {
+        Personne::Afficher();
+        cout << "Salaire : " << salaire << " €" << endl;
+    }
+};
+
+class Chef : public Employe {
+private:
+    string service;
+
+public:
+    Chef(string nom, string prenom, string dateNaissance, double salaire, string service)
+        : Employe(nom, prenom, dateNaissance, salaire), service(service) {}
+
+    void Afficher() const override {
+        Employe::Afficher();
+        cout << "Service : " << service << endl;
+    }
+};
+
+class Directeur : public Chef {
+private:
+    string societe;
+
+public:
+    Directeur(string nom, string prenom, string dateNaissance, double salaire, string service, string societe)
+        : Chef(nom, prenom, dateNaissance, salaire, service), societe(societe) {}
+
+    void Afficher() const override {
+        Chef::Afficher();
+        cout << "Société : " << societe << endl;
+    }
+};
+
+int main() {
+    Personne personne("akram", "benyacoub", "01/01/1980");
+    Employe employe("ahmad", "wadie", "02/02/1990", 3000.0);
+    Chef chef("Bnani", "samira", "03/03/1985", 4000.0, "RH",);
+    Directeur directeur("omar", "tahiri", "01/01/1980", 10000.0, "Direction", "ABC Inc.");
+
+    personne.Afficher();
+    cout << endl;
+    employe.Afficher();
+    cout << endl;
+    chef.Afficher();
+    cout << endl;
+    directeur.Afficher();
+
+    return 0;
+}
